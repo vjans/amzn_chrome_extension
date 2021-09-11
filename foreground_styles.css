@@ -11,9 +11,22 @@
 	left: 50%;
 	transform: translate(-50%,-50%);
 
-	color:  white;
-	font-size:  70px;
 
 	background-color: brown;
 
+}
+
+#ce_name{
+	color: white;
+	font-size: 70px;
+}
+
+
+#ce_button{
+	color: white;
+	padding: 60px 30px;
+	border-radius: 5px;
+	font-size: 30px;
+	background-color: brown;
+	cursor:pointer;
 }

@@ -18,6 +18,8 @@ chrome.tabs.onUpdated.addListener((tabId,changeInfo,tab) =>{
 			files: ["./foreground_styles.css"]
 		}).then(()=>{
 
+			console.log("INJECTED FOREGROUND CSS.")
+
 			chrome.scripting.executeScript({
 						target: {tabId: tabId},
 						files: ["./foreground.js"]
@@ -25,6 +27,8 @@ chrome.tabs.onUpdated.addListener((tabId,changeInfo,tab) =>{
 						.then(()=>{
 
 							console.log("INJECTED FOREGROUND SCRIPT.");
+
+
 
 						}).catch(err => console.log(err));
 
@@ -34,4 +38,38 @@ chrome.tabs.onUpdated.addListener((tabId,changeInfo,tab) =>{
 
 	}
 
+});
+
+/*
+chrome.runtime.sendMessage() => send message to all scripts
+chrome.tabs.sendMessage() => send script to tab in foreground
+*/
+
+chrome.runtime.onMessage.addListener((request,sender,sendResponse) => {
+	if(request.message === 'get_name'){
+		chrome.storage.local.get('name', data => {
+			if(chrome.runtime.lastError){
+				sendResponse({
+					message: 'fail'
+				});
+				return;
+			}
+			sendResponse({
+				message: 'success',
+				payload: data.name
+			});
+		});
+		return true;
+	} else if (request.message === 'change_name'){
+		chrome.storage.local.set(
+			{name:request.payload},
+			() => {
+				if(chrome.runtime.lastError){
+					sendResponse({message:'fail'});return;
+				}
+				
+				sendResponse({message:'success'});
+			});
+		return true;
+	}
 });
