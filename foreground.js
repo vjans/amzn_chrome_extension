@@ -62,7 +62,13 @@ function get_product_data(){
 	pr = pr.textContent.replace(/(\r\n|\n|\r)/gm, "");
 
 	//img = document.getElementById("/a-autoid-[0-9]*-/announce").innerHTML;
-	img = document.getElementsByClassName("a-button a-button-thumbnail a-button-toggle a-button-selected a-button-focus")[0].querySelector("[id^=a-autoid-][id$=-announce]").innerHTML;
+	img = document.getElementsByClassName("a-button a-button-thumbnail a-button-toggle a-button-selected a-button-focus");
+	if (img === null){
+		img = document.getElementsByClassName("a-button a-button-thumbnail a-button-toggle");
+	}
+	img = img[0].querySelector("[id^=a-autoid-][id$=-announce]").innerHTML;
+	console.log(img);
+	//[0].querySelector("[id^=a-autoid-][id$=-announce]").innerHTML;
 
 	return {title:tit,price:pr,image:img};
 }
