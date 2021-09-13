@@ -70,7 +70,22 @@ function get_product_data(){
 	console.log(img);
 	//[0].querySelector("[id^=a-autoid-][id$=-announce]").innerHTML;
 
-	return {title:tit,price:pr,image:img};
+	//i stole this ^__^
+	var url = window.location.href;
+	var regex = RegExp("(?:[/dp/]|$)([A-Z0-9]{10})");
+
+	id = "";
+	m = url.match(regex);
+	console.log(m);
+
+	if (m) { 
+		id = m[1];
+	}
+
+
+
+
+	return {title:tit,price:pr,image:img,asin:id};
 }
 
 //when the button is clicked (which is only possible on a product page)

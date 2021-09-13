@@ -62,7 +62,7 @@ function check_duplicates(inst, dic){
 	for (const [key,value] of Object.entries(dic)){
 		//just check title for now because prices change
 		//and maybe img urls too
-		if(inst.title == value.title){
+		if(inst.asin == value.asin){
 			console.log("DUPLICATE PRODUCT");
 			return true;
 		}
@@ -111,7 +111,8 @@ chrome.runtime.onMessage.addListener((request,sender,sendResponse) => {
 
 			//only save unique products (BAD CODE)
 			if(check_duplicates(request.payload,res) === false){
-				res[id] = request.payload;
+				res[id
+				] = request.payload;
 			}
 
 			//update google storage
