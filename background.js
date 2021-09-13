@@ -58,6 +58,20 @@ chrome.tabs.sendMessage() => send script to tab in foreground
 */
 
 
+function check_duplicates(inst, dic){
+	for (const [key,value] of Object.entries(dic)){
+		//just check title for now because prices change
+		//and maybe img urls too
+		if(inst.asin == value.asin){
+			console.log("DUPLICATE PRODUCT");
+			return true;
+		}
+
+	}
+
+	return false;
+
+}
 
 
 
@@ -88,9 +102,19 @@ chrome.runtime.onMessage.addListener((request,sender,sendResponse) => {
 		//get all products from local storage and save in res
 		chrome.storage.local.get('products', function(result){
 			var res = result.products; 
+			//if no products saved make dictionary
+			if (res === undefined){
+				res = {};
+			}
 			var id = Math.random().toString(36).substr(2, 5);
 			//add payload to dictionary (with random id)
-			res[id] = request.payload;
+
+			//only save unique products (BAD CODE)
+			if(check_duplicates(request.payload,res) === false){
+				res[id
+				] = request.payload;
+			}
+
 			//update google storage
 			console.log("DICT AFTER ADD:");
 			console.log(res);
