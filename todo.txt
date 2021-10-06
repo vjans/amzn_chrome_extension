@@ -1,0 +1,10 @@
+-Add Top-Bar with logo and options (think about better ways to style)
+-Add delete button functionality (animation)
+-Add notifications
+-fix product save errors (find out which pages don't get parsed correctly)
+-check if product already saved on injection
+
+
+API needed?
+-Add price listener
+-Add affiliate links
