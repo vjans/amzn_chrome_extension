@@ -1,0 +1,110 @@
+body{
+width:  400px;
+height: 400px;
+color: #050505;
+font-size: 14px;
+background-color: #232f3e;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #656565;
+}
+
+.products{
+
+	width:  400px;
+	height: 400px;
+	overflow-y: scroll;
+}
+.product{
+	display: flex;
+	outline: solid #BB7700;
+	background-color: #EEEEEE;
+	padding: 2%;
+	margin: 2%;
+
+}
+
+.product:hover{
+	outline: solid #ff9900;
+	background-color: #f2f2f2;
+	padding: 2%;
+	margin: 2%;
+
+}
+
+.p_image{
+	padding: 3%;
+	flex: 2;
+}
+
+.p_data{
+	padding: 1%;
+	flex: 12;
+}
+
+
+.p_del_btn{
+	cursor: pointer;
+	color: #999999;
+	flex: 1;
+	height: 20px;
+}
+.p_del_btn:hover{
+
+	color: #333333;
+}
+
+
+
+
+.p_price{
+	display: flex;
+	font-size: 16px;
+}
+
+.p_name{
+	font-size: 14px;
+}
+
+a:link{
+	color: #131f2e;
+	text-decoration: none;
+}
+a:visited{
+	color: #131f2e;
+	text-decoration: none;
+}
+a:hover{
+	color: #47577a;
+	text-decoration: none;
+}
+
+
+
+
+.p_prev_price{
+	color: #555555;
+	text-decoration: line-through;
+}
+
+.p_deal_price{
+	color: red;
+}
