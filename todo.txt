@@ -1,10 +1,19 @@
--Add Top-Bar with logo and options (think about better ways to style)
--Add delete button functionality (animation)
--Add notifications
+XAdd Top-Bar with logo and options (think about better ways to style)
+XAdd delete button functionality 
+XAdd bage with product count next to top-bar icon
+Xadd special screen when no products are saved
 -fix product save errors (find out which pages don't get parsed correctly)
 -check if product already saved on injection
 
-
-API needed?
+API needed:
 -Add price listener
 -Add affiliate links
+-isDeal function
+-time intervals for price checks and notifications
+
+optional/fancy:
+-logos in all resolutions
+-buy logos from fiverr
+-delete animation
+-better no product screen
+-Add notifications
