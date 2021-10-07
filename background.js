@@ -5,22 +5,61 @@ chrome.runtime.onInstalled.addListener(()=>{
 });
 
 
-//listener for current tab to inject foregorund js into page
 
-/*
-function check_if_product_page(){
-	return document.documentElement.outerHTML.contains("exports_desktop_qualifiedBuybox_buyNow_feature_div");
-}
-function is_product_page(tab){
-	console.log(document);
+
+
+
+function isDeal(product_key){
+	//returns true if
+	//current price < save price
+
 	return true;
 }
 
-*/
+function updateBadgeCount(){
+
+	chrome.storage.local.get('products', function(result){
+	var products = result.products; 
+	//if no products saved make dictionary
+
+	if (products === undefined){
+		products = {};
+	}
+	
+	console.log(products);
+	cnt = 0;
+	for (const [key, value] of Object.entries(products)) {
+  	
+  		cnt+=isDeal(key);
+	
+	}
+
+	if (cnt <= 9){
+
+	chrome.action.setBadgeText({text: cnt.toString()});
+	
+	} else{
+
+	chrome.action.setBadgeText({text: "9+"});
+	
+	}
+
+	return;
+	});
+	
+
+
+
+}
 
 
 
 chrome.tabs.onUpdated.addListener((tabId,changeInfo,tab) =>{
+
+	//this might be the wrong place for this
+	updateBadgeCount();
+
+
 	if(changeInfo.status === 'complete' && /^http/.test(tab.url)){
 		if(true){ //document.documentElement.outerHTML.contains("exports_desktop_qualifiedBuybox_buyNow_feature_div")
 			console.log("AI YA YAY");
@@ -136,3 +175,4 @@ chrome.runtime.onMessage.addListener((request,sender,sendResponse) => {
 		return true;
 	}
 });
+
